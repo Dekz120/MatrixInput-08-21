@@ -72,8 +72,6 @@ public:
             MATRIX_ELEM tmp=0;
             for(int i = string_elem, j = column_elem, k=0; k < this->getLineSize(); i++, j++, k++)
             {
-                cout << i << "wewe" << j + k*(matr2.getLineSize()-1) <<endl;
-                cout << (*matrixField)[i] << " " << (*matr2.matrixField)[j + k*(matr2.getLineSize()-1)] << endl;
                 tmp += (*matrixField)[i] * (*matr2.matrixField)[j + k*(matr2.getLineSize()-1)] ;
 
             }
@@ -137,7 +135,6 @@ public:
         {
             string_elem = i / matr.getLineSize() + 1;
             column_elem = i % matr.getLineSize() + 1;
-            //cout << string_elem << 'U' << column_elem << " " << (*matr.matrixField)[i] << endl;
             tmpMatrix.addElem(column_elem, string_elem, (*matr.matrixField)[i]);
 
         }
@@ -224,8 +221,6 @@ public:
         mathMatrix tmp_matrix;
         MATRIX_ELEM definitor;
         tmp_matrix = builtMinorMatrix(matr, definitor);
-
-        //cout << (long double)1 /definitor << "tmp+def______________" << definitor << endl;
         if(definitor != 0)
         {
             tmp_matrix = transposit(tmp_matrix) * (1 / definitor);
@@ -254,10 +249,9 @@ public:
     int addElem(const int i_line, const int j_column, const MATRIX_ELEM mVal)
     {
         int mIndex = lineSize*(i_line - 1) + (j_column-1) ;
-        cout << lineSize*(i_line - 1) + (j_column-1) << endl;
         if(mIndex < 0 && mIndex > lineSize*columnSize-1)
         {
-            cout << "Bad RANGE" << endl;return -1;
+            cout << "Out of range" << endl;return -1;
         }
         (*matrixField)[lineSize*(i_line - 1) + (j_column-1) ] = mVal;
         return 0;
@@ -266,7 +260,7 @@ public:
     {
         if(mIndex < 0 && mIndex > lineSize*columnSize-1)
         {
-            cout << "Bad RANGE" << endl;return -1;
+            cout << "Out of rangeE" << endl;return -1;
         }
         (*matrixField)[mIndex] = mVal;
         return 0;
